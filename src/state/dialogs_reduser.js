@@ -19,10 +19,12 @@ messageText: ''
 }
 
 let dialogsReduser = (state = initialState, action) => {
+  let newState = {...state}
   switch (action.type) {
     case SEND_MESSAGE:
       if (state.messageText.trim() !== ''){
-        state.dialog.push(
+        newState.dialog = [...state.dialog]
+        newState.dialog.push(
           {id : "55", text:state.messageText, my: true}
         )
       }

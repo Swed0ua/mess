@@ -12,27 +12,26 @@ let initialState = {
 }
 
 export let homeReduser = (state = initialState, action) => {
+  let newState = {...state}
   switch (action.type) {
     case ADD_POST:{
-      let newState = {...state}
       if (state.postInput.trim() !== ''){
-        newState.posts = {...state.posts}
+        newState.posts = [...state.posts]
         console.log(newState)
-        state.posts.push(
+        newState.posts.push(
          {author : 'User', text:state.postInput}
         )
       }
-      state.postInput = '';
+      newState.postInput = '';
       break
     }
     case INPUT_POST_CHANGE: {
-      let newState = {...state}
-      state.postInput = action.text;
+      newState.postInput = action.text;
       break
     }
   }  
     
-    return state;
+    return newState;
 }
 
 export default homeReduser;

@@ -1,13 +1,13 @@
 import React from 'react';
 import './dialogs.css'
 import DialogsPreview from './DialogsPreview/DialogsPreview';
-import DialogWrapper from './DialogWrapper/DialogWrapper';
+import DialogWrapperConteiner from './DialogWrapper/Dialog/DialogWrapperConteiner';
 
 function Dialogs (props) {
     return (
         <div className="dialogs app__noWrapContent">
-            <DialogsPreview dialogs={props.appState.dialogs_reduser.dialogsPreview} />
-            <DialogWrapper dispatch={props.dispatch} message={props.appState.dialogs_reduser.dialog} messageText = {props.appState.dialogs_reduser.messageText} />
+            <DialogsPreview dialogs={props.appState.getState().dialogs_reduser.dialogsPreview} />
+            <DialogWrapperConteiner dispatch={props.dispatch} message={props.appState.getState().dialogs_reduser.dialog} messageText = {props.appState.getState().dialogs_reduser.messageText} />
         </div>
     )
 }
