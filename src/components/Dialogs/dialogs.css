@@ -1,0 +1,156 @@
+.dialogs {
+    display: grid;
+    width: 100%;
+    position: relative;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 40px;
+}
+
+.dialogs__title {
+    padding: 20px;
+    padding-top:0;
+}
+
+.dialogs__preview {
+    display: flex;
+    width: 400px;
+    max-width: 40vw;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dialogs__area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 10px;
+    height: 100%;
+}
+
+.message__wrapper {
+    flex-grow: 1;
+}
+
+.dialog__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.dialog__area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message */
+
+.mewssage__creator {
+    width: 100%;
+    background-color: #fff;
+}
+
+.message__wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.message>p {
+    background-color: #FFB09E;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.message__my {
+    justify-content: flex-end;
+}
+
+.message__my>p {
+    background-color: #fff;
+}
+
+/* Dialogs item */
+
+.dialogs__item {
+    width: 100%;
+    height: 70px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
+.dialogs__item.active {
+    background-color: #F0E6A2;
+}
+
+.dialogs__ava {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 90%;
+    -webkit-border-radius: 90%;
+    -moz-border-radius: 90%;
+    -ms-border-radius: 90%;
+    -o-border-radius: 90%;
+}
+
+.dialogs__ava>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dialogs__info {
+    display: flex;
+    flex-grow: 1;
+}
+
+.dialogs__info>* {
+    padding: 5px;
+}
+
+.dialogs__dt {
+    flex-grow: 1;
+}
+
+/*message creator*/
+
+.message__creator {
+    padding: 5px;
+    width: 100%;
+    height: 40%;
+    background-color: #fff;
+}
+
+.message__buttons {
+    padding: 5px 0px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.message__area {
+    width: 100%;
+    height: 50px;
+}

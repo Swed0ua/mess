@@ -1,0 +1,47 @@
+*,
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  list-style: none;
+}
+
+A {
+  text-decoration: none;
+  color: inherit;
+}
+
+.H1 {
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.BlockTemplate {
+  background-color: #EFECD6;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  padding: 30px;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.App > * {
+  padding: 20px;
+}
+
+.app__noWrapContent {
+  flex-grow: 1;
+  height: calc(100vh - 100px) !important;
+  overflow: hidden;
+}

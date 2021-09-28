@@ -1,0 +1,19 @@
+.home_posts {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    position: relative;
+}
+
+.post_creator {
+    width: 100%;
+    height: 200px;
+    padding: 30px;
+}
+
+.post {
+    margin-bottom: 30px;
+    width: 100%;
+    padding: 30px;
+}
