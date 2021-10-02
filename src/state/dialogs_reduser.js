@@ -28,14 +28,14 @@ let dialogsReduser = (state = initialState, action) => {
           {id : "55", text:state.messageText, my: true}
         )
       }
-      state.messageText = '';
+      newState.messageText = '';
       break;
   
     case MESSAGE_INPUT_CHANGE:
-      state.messageText = action.text;
+      newState.messageText = action.text;
       break;
   } 
-    return state;
+    return newState;
 }
 
 

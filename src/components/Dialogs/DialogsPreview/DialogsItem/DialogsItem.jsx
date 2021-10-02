@@ -10,12 +10,12 @@ function DialogsItem (props) {
 
     return (
         <NavLink to={urlPage} className="dialogs__item">
-            <div className="dialogs__ava">
+            <div className="dialogs__ava account__ava">
                 <img src="https://images.pexels.com/photos/2173872/pexels-photo-2173872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
             </div>
             <div className="dialogs__info">
                 <div className="dialogs__dt">
-                    <div className="dialogs__name">{props.name}</div>
+                    <div className="dialogs__name account__name">{props.name}</div>
                     <div className="dialogs__messagePrev">{props.lastMes}</div>
                 </div>
                 <div className="dialogs__check">

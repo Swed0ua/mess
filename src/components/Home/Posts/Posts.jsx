@@ -7,7 +7,7 @@ function Posts (props) {
     let newPost = React.createRef();
 
     let onAddPost = () => {
-        props.addPost(addPostActionCreator());
+        props.addPost();
     }
 
     let onInputPostsChange = () => {

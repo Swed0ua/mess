@@ -1,0 +1,14 @@
+.account-preview {
+    padding: 10px;
+    margin: 10px;
+}
+
+.account-preview__header {
+    display: flex;
+    align-items: center;
+}
+
+.account-preview__name {
+    margin-left: 5px;
+    font-size: 1.5em;
+}
