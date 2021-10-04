@@ -4,9 +4,10 @@ import Header from './components/Header/Header';
 import {BrowserRouter, Route, Router, Switch } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Dialogs from './components/Dialogs/Dialogs';
-import SearchingConteiner from './components/Searching/SearchingConteiner';
+import SearchingConteiner from './components/Searching/SearchingConteiner'; 
 
 function App(props) {
+
   return (
       <BrowserRouter>
         <div className="App">
