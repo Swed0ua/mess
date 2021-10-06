@@ -12,3 +12,14 @@
     margin-left: 5px;
     font-size: 1.5em;
 }
+
+/* Result page */
+.result__pages *{
+    font-size: 1.5em;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.result__pages > ._active {
+    font-weight: 900;
+}

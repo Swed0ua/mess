@@ -12,14 +12,19 @@ function Searching (props) {
         props.unfollowing(userId)
     }
 
-    let onLoadUsers = (users) => {
-        props.loadUsers(users)
+    let onLoadUsers = (users, totalCount) => {
+        props.loadUsers(users, totalCount);
+        
+    }
+
+    let onChangeSearchPage = (page) => {
+        props.changePage(page)
     }
 
     return (
         <div className="searching ">
             <div className="searching__searchArea"></div>
-            <SearchResult onFollowing={onFollowing} onLoadUsers={onLoadUsers} onUnfollowing={onUnfollowing} users={props.searchingPage.users}/>
+            <SearchResult onChangeSearchPage={onChangeSearchPage} onFollowing={onFollowing} onLoadUsers={onLoadUsers} onUnfollowing={onUnfollowing} searching={props.searchingPage}/>
         </div>
     )
 }

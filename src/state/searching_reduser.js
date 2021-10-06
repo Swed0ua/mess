@@ -1,9 +1,13 @@
 const FOLLOWING = 'FOLLOWING',
 UNFOLLOWING = 'UNFOLLOWING',
-LOADUSERS = 'LOADUSERS'
+LOADUSERS = 'LOADUSERS',
+CHANGE_PAGE = 'CHANGE_PAGE'
 
 let initialState = {
-  users: [] 
+  users: [],
+  pageSize: 5,
+  page: 5,
+  pages: 0
 }
 
 let searchingReduser = (state = initialState, action) => {
@@ -24,8 +28,11 @@ let searchingReduser = (state = initialState, action) => {
 
     case LOADUSERS:
       newState.users = action.users;
-      console.log(action)
+      newState.pages = Math.ceil(action.totalCount / state.pageSize);
       break;
+    
+    case CHANGE_PAGE:
+      newState.page = action.page;
   } 
     return newState;
 }
@@ -44,8 +51,14 @@ export let unfollowingChangeActionCreator = (userId) => {
   }
 }
 
-export let loadUsersActionCreator = (users) => {
+export let loadUsersActionCreator = (users, totalCount) => {
   return {
-      type: LOADUSERS, users: users
+      type: LOADUSERS, users, totalCount
+  }
+}
+
+export let changePageActionCreator = (page) => {
+  return {
+      type: CHANGE_PAGE, page
   }
 }

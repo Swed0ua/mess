@@ -1,5 +1,5 @@
 import React from 'react';
-import {followingActionCreator, unfollowingChangeActionCreator, loadUsersActionCreator} from '../../../src/state/searching_reduser'
+import {followingActionCreator, unfollowingChangeActionCreator, loadUsersActionCreator, changePageActionCreator} from '../../../src/state/searching_reduser'
 import { connect } from 'react-redux';
 import Searching from './Searching';
 
@@ -8,17 +8,11 @@ let mapStoreToProps = (state) => {
         searchingPage: state.searching_reduser
     }
 },
-mapDispatchToProps = (dispatch)=> {
-   return { following : (userId) => {
-        dispatch(followingActionCreator(userId))
-    },
-    unfollowing : (userId) => {
-        dispatch(unfollowingChangeActionCreator(userId))
-    },
-    loadUsers: (users) => {
-        dispatch(loadUsersActionCreator(users))
-    }    
-}
+mapDispatchToProps = {
+        following : followingActionCreator,
+        unfollowing : unfollowingChangeActionCreator,
+        loadUsers: loadUsersActionCreator,
+        changePage: changePageActionCreator
 }
 
 export let SearchingConteiner = connect(mapStoreToProps, mapDispatchToProps)(Searching);
