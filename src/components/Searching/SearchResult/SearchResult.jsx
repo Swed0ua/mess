@@ -1,27 +1,13 @@
 import React from 'react';
 import { useStore } from 'react-redux';
 import AccountPreview from './AccountPreview/AccountPreview';
-import * as axios from 'axios';
+import Preloader from '../../General/Preloader/Preloader';
 
 function SearchResult (props) {
 
-    let users = new Array();
-
-    let usersShow = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.searching.page}&count=5`, {
-            headers: {
-            'API-KEY': 'd0ce4cd8-d0d2-4152-99ad-f6e1407cb23f'
-        }
-        }).then((response) => {
-            users = response.data.items;
-            let totalCount = response.data.totalCount;
-            props.onLoadUsers(users, totalCount);
-            console.log(response)
-        })
-    }
     
     if (props.searching.users.length === 0) {
-        usersShow();
+        props.usersShow(props.searching.page);
     }
 
     let pagesCurrent = new Array();
@@ -29,10 +15,11 @@ function SearchResult (props) {
         pagesCurrent.push(i);
     }
     return (
-        <div className="searching__result">     
+        <div className="searching__result">    
+            {props.searching.loading ? <Preloader/> : null }
             <div className="result__pages">
                 {pagesCurrent.map(e => {
-                    return <span onClick={()=> props.onChangeSearchPage(e) } className={e === props.searching.page ? '_active' : '' } >{e}</span>
+                    return <span onClick={()=> props.usersShow(e) } className={e === props.searching.page ? '_active' : '' } >{e}</span>
                 })}
                 
             </div>   

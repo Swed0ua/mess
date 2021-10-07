@@ -1,13 +1,14 @@
 const FOLLOWING = 'FOLLOWING',
 UNFOLLOWING = 'UNFOLLOWING',
 LOADUSERS = 'LOADUSERS',
-CHANGE_PAGE = 'CHANGE_PAGE'
+PRELOAD = 'PRELOAD'
 
 let initialState = {
   users: [],
   pageSize: 5,
   page: 5,
-  pages: 0
+  pages: 0,
+  loading: true
 }
 
 let searchingReduser = (state = initialState, action) => {
@@ -28,11 +29,12 @@ let searchingReduser = (state = initialState, action) => {
 
     case LOADUSERS:
       newState.users = action.users;
-      newState.pages = Math.ceil(action.totalCount / state.pageSize);
+      newState.pages = action.totalCount;
+      newState.page = action.page
       break;
     
-    case CHANGE_PAGE:
-      newState.page = action.page;
+    case PRELOAD:
+      newState.loading = action.load;
   } 
     return newState;
 }
@@ -51,14 +53,14 @@ export let unfollowingChangeActionCreator = (userId) => {
   }
 }
 
-export let loadUsersActionCreator = (users, totalCount) => {
+export let loadUsersActionCreator = (page, users = initialState.users, totalCount = initialState.pages) => {
   return {
-      type: LOADUSERS, users, totalCount
+      type: LOADUSERS, users, totalCount, page
   }
 }
 
-export let changePageActionCreator = (page) => {
+export let changePreloadActionCreator = (load) => {
   return {
-      type: CHANGE_PAGE, page
+      type: PRELOAD, load
   }
 }
