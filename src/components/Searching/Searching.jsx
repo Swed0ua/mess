@@ -13,6 +13,7 @@ function Searching (props) {
                 onUnfollowing={props.onUnfollowing} 
                 searching={props.searchingPage}
                 usersShow = {props.usersShow}
+                onPreload={props.onPreload}
                 />
         </div>
     )

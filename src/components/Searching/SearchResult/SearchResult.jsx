@@ -13,25 +13,18 @@ function SearchResult (props) {
         pagesCurrent.push(i);
     }
 
-    if (props.searching.users.length === 0) {
-        props.usersShow(props.searching.page);
-    } else {
-        pagesCurrentHTML = pagesCurrent.map(e => {
-            return <span onClick={()=> props.usersShow(e) } className={e === props.searching.page ? '_active' : '' } >{e}</span>
-        })
-        usersResultHtml = props.searching.users.map(e => {
-            return(<AccountPreview user={e} onUnfollowing={props.onUnfollowing} onFollowing={props.onFollowing}/>)
-       })
-    }
 
     return (
         <div className="searching__result">    
-            {props.searching.loading ? <Preloader/> : null }
             <div className="result__pages">
-                {pagesCurrentHTML}
-                
+                {pagesCurrent.map(e => {
+                    return <span onClick={()=> props.onChangeSearchPage(e) } className={e === props.searching.page ? '_active' : '' } >{e}</span>
+                })}
+                {props.searching.loading == true || props.searching.loading == undefined  ? <Preloader/> : null }
             </div>   
-            {usersResultHtml}
+            {props.searching.users.map(e => {
+                return(<AccountPreview user={e} onUnfollowing={props.onUnfollowing} onFollowing={props.onFollowing}/>)
+            })}
         </div>
     )
 }

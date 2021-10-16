@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function AccountPreview (props) {
     let smallPhoto = (photo) => {if (photo!=null){
@@ -11,18 +12,18 @@ function AccountPreview (props) {
 
     return (
         <div className="account-preview">
-                    <div className="account-preview__header">
-                        <div className="account-preview__ava account__ava">
-                            <img src={smallPhoto(props.user.photos.small)} alt="ava"/>
-                        </div>
-                        <div className="account-preview__name account__name">{props.user.name}</div>
-                    </div>
-                    <div className="account-preview__interaction">
-                        <div className="account-preview__button button-follow">
-                            { props.user.followed ? <button onClick={ () => props.onUnfollowing(props.user.id)} >Unfollow</button> : <button onClick={ () => props.onFollowing(props.user.id)} >Follow</button>}
-                        </div>
-                    </div>
+            <NavLink to={`/home/${props.user.id}`} className="account-preview__header">
+                <div className="account-preview__ava account__ava">
+                    <img src={smallPhoto(props.user.photos.small)} alt="ava"/>
                 </div>
+                <div className="account-preview__name account__name">{props.user.name}</div>
+            </NavLink>
+            <div className="account-preview__interaction">
+                <div className="account-preview__button button-follow">
+                    { props.user.followed ? <button onClick={ () => props.onUnfollowing(props.user.id)} >Unfollow</button> : <button onClick={ () => props.onFollowing(props.user.id)} >Follow</button>}
+                </div>
+            </div>
+        </div>
     )
 }
 

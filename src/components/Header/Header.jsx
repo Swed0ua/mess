@@ -9,9 +9,9 @@ function Header (props) {
         <header>
         <div className="logo">MESSENGER</div>
         <Menu/>
-        {props.header.auth ?
+        {props.authMe.id ?
          <div className="user">
-            <div className="user_name">User First</div>
+            <div className="user_name">{props.authMe.login}</div>
             <div className="user_photo"></div>
         </div> :
         <button>login</button> 

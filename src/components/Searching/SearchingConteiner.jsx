@@ -2,36 +2,34 @@ import React from 'react';
 import {followingActionCreator, unfollowingChangeActionCreator, loadUsersActionCreator, changePageActionCreator, changePreloadActionCreator} from '../../../src/state/searching_reduser'
 import { connect } from 'react-redux';
 import Searching from './Searching';
-import { followed, getUsers, unfollowed } from '../../state/api';
+import { Redirect } from 'react-router-dom';
+import { followingThunk, getUsersThunk, unfollowingThunk } from '../../state/thunk';
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { compose } from 'redux';
 
 class SearchingConteiner extends React.Component {
 
     constructor(props){
         super(props)
     }
+
+    componentDidMount(){
+        this.onPreload(true);
+        this.usersShow(this.props.searchingPage.page);
+    }
     
     onFollowing = (userId) => {
-        
-        followed(userId).then( response => {
-            if(response.data.resultCode === 0) this.props.following(userId) 
-        })
-
+       this.props.following(userId);
     }
 
     onUnfollowing = (userId) => {
-        unfollowed(userId).then( response => {
-            if(response.data.resultCode === 0) this.props.unfollowing(userId) 
-        })
-    }
-
-    onLoadUsers = (users, totalCount) => {
-        let total = Math.ceil(totalCount / this.props.searchingPage.pageSize);
-        this.props.loadUsers(users, total);
-        
+        this.props.unfollowing(userId);
     }
 
     onChangeSearchPage = (page) => {
+        this.onPreload(true);
         this.props.changePage(page);
+        this.usersShow(page)
     }
 
     onPreload = (load) => {
@@ -39,20 +37,10 @@ class SearchingConteiner extends React.Component {
     }
 
     usersShow = (page) => {
-        console.log('start')
-        
-    getUsers(page).then((response) => {
-            let users = response.data.items;
-            let totalCount = response.data.totalCount;
-            this.onLoadUsers(users, totalCount);
-            console.log('end', response)
-        }).catch((e) => {
-            console.log(e)
-        } )
+        this.props.getUsers(page);
     }
 
     render(){
-        console.log(this.props)
         return (
             <Searching {...this.props} 
             onFollowing={this.onFollowing}
@@ -60,6 +48,7 @@ class SearchingConteiner extends React.Component {
             onLoadUsers={this.onLoadUsers}
             onChangeSearchPage={this.onChangeSearchPage}
             usersShow = {this.usersShow}
+            onPreload={this.onPreload}
             />
         )
     }
@@ -69,15 +58,19 @@ class SearchingConteiner extends React.Component {
 
 let mapStoreToProps = (state) => {
     return{
-        searchingPage: state.searching_reduser
+        searchingPage: state.searching_reduser,
+        auth: state.auth_reduser
     }
 };
 let mapDispatchToProps = {
-        following : followingActionCreator,
-        unfollowing : unfollowingChangeActionCreator,
-        loadUsers: loadUsersActionCreator,
+        following : followingThunk,
+        unfollowing : unfollowingThunk,
         changePage: changePageActionCreator,
-        changePreload : changePreloadActionCreator
+        changePreload : changePreloadActionCreator,
+        getUsers: getUsersThunk
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(SearchingConteiner);
+export default compose(
+    connect(mapStoreToProps, mapDispatchToProps),
+    WithAuthRedirect
+)(SearchingConteiner)

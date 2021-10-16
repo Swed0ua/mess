@@ -7,18 +7,19 @@ PRELOAD = 'PRELOAD'
 let initialState = {
   users: [],
   pageSize: 5,
-  page: 5,
+  page: 1,
   pages: 20,
-  loading: true
+  loading: false
 }
 
 let searchingReduser = (state = initialState, action) => {
   let newState = {...state};
   newState.users = [...state.users]
+  console.log(action)
   switch (action.type) {
     case FOLLOWING:
       newState.users.map(e => {
-        
+        if (e.id === action.id){ e.followed = true} 
       })
       break;
   
@@ -31,7 +32,7 @@ let searchingReduser = (state = initialState, action) => {
     case LOADUSERS:
       newState.users = action.users;
       /* newState.pages = action.totalCount; */
-      newState.page = action.page
+      newState.loading = false
       break;
     
     case CHANGE_PAGE:
@@ -57,9 +58,9 @@ export let unfollowingChangeActionCreator = (userId) => {
   }
 }
 
-export let loadUsersActionCreator = (users, totalCount) => {
+export let loadUsersActionCreator = (users) => {
   return {
-      type: LOADUSERS, users, totalCount
+      type: LOADUSERS, users
   }
 }
 

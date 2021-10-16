@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authMe } from '../../state/api';
-import { authActionCreator } from '../../state/header_reduser';
+import { authMeThunk } from '../../state/thunk';
 import Header from './Header';
 import './header.css';
 
@@ -10,12 +9,7 @@ class HeaderConteiner extends React.Component  {
         super(props)
     }
     componentDidMount(){
-        authMe().then( response => {
-            this.onAuth(true)
-        })
-    }
-    onAuth = (bool) => {
-        this.props.auth(bool)
+       this.props.auth()
     }
     render(){
         return <Header {...this.props}/>
@@ -24,11 +18,12 @@ class HeaderConteiner extends React.Component  {
 
 let mapStoreToProps = (state) => {
     return{
-        header: state.header_reduser
+        header: state.header_reduser,
+        authMe: state.auth_reduser
     }
 };
 let mapDispatchToProps = {
-    auth: authActionCreator
+    auth: authMeThunk
 }
 
 export default connect(mapStoreToProps, mapDispatchToProps)(HeaderConteiner);

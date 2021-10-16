@@ -1,13 +1,20 @@
 const ADD_POST = 'ADD-POST',
-INPUT_POST_CHANGE = 'INPUT-POST-CHANGE'
+INPUT_POST_CHANGE = 'INPUT-POST-CHANGE',
+LOAD_PROFILE = 'LOAD_PROFILE'
 
 let initialState = {
+  userid: 0,
+  fullName: 'User',
   posts: [
     {author : 'User', text:"Hello world!"},
     {author : 'User', text:"How are your"},
     {author : 'User', text:"Hello world!"},
     {author : 'User', text:"Have a nice day, guys"}
   ],
+  photos: {
+    small: null,
+    large: null
+  },
   postInput: ''
 }
 
@@ -29,6 +36,9 @@ export let homeReduser = (state = initialState, action) => {
       newState.postInput = action.text;
       break
     }
+    case LOAD_PROFILE : {
+      return {...state, ...action.userData}
+    }
   }  
     
     return newState;
@@ -47,3 +57,9 @@ export let inputPostChangeActionCreator = (text) => {
       type: INPUT_POST_CHANGE, text: text
   }
 }
+
+export let loadProfileActionCreator = (userData) => {
+  return {
+      type : LOAD_PROFILE, userData
+  }
+};

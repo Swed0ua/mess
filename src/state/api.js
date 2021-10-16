@@ -1,4 +1,7 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { userAuth } from "./auth_reduser";
+import store from "./redux-store";
 
 
 let instance = axios.create({
@@ -9,18 +12,28 @@ let instance = axios.create({
 })
 
 
-export const getUsers = (page) => {
-    return instance.get(`users?page=${page}&count=5`)
+export const AuthProfileAPI = {
+    authMe(){
+        return instance.get(`auth/me`).then(response => {
+            let {id, login, email} = response.data.data;
+            store.dispatch(userAuth(id, login, email));
+        })
+    },
+    getProfile(userId){
+        return instance.get(`profile/${userId}`)
+    }
 }
 
-export const authMe = () => {
-    return instance.get(`auth/me`)
-}
+export const UserAPI = {
+    getUsers(page){
+        return instance.get(`users?page=${page}&count=5`)
+    },
+    followed(id){
+        return instance.post(`follow/${id}`)
+    },
+    unfollowed(id){
+        return instance.delete(`follow/${id}`)
+    }
 
-export const followed = (id) => {
-    return instance.post(`follow/${id}`)
-}
 
-export const unfollowed = (id) => {
-    return instance.delete(`follow/${id}`)
 }

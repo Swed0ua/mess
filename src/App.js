@@ -12,7 +12,7 @@ function App(props) {
       <BrowserRouter>
         <div className="App">
           <HeaderConteiner/>
-          <Route path="/home" render={() => <Home dispatch={props.dispatch} appState={props.appState} />} ></Route>
+          <Route path="/home/:userId?" render={() => <Home dispatch={props.dispatch} appState={props.appState} />} ></Route>
           <Route path="/dialogs" render={() => <Dialogs dispatch={props.dispatch} appState={props.appState} />} ></Route>
           <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
         </div>
