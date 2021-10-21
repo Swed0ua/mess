@@ -1,8 +1,11 @@
 const ADD_POST = 'ADD-POST',
 INPUT_POST_CHANGE = 'INPUT-POST-CHANGE',
-LOAD_PROFILE = 'LOAD_PROFILE'
+LOAD_PROFILE = 'LOAD_PROFILE',
+GET_STATUS = 'GET_STATUS',
+UPDATE_STATUS = 'UPDATE_STATUS'
 
 let initialState = {
+  status: '',
   userid: 0,
   fullName: 'User',
   posts: [
@@ -15,16 +18,16 @@ let initialState = {
     small: null,
     large: null
   },
-  postInput: ''
+  postInput: '',
 }
 
 export let homeReduser = (state = initialState, action) => {
   let newState = {...state}
+
   switch (action.type) {
     case ADD_POST:{
       if (state.postInput.trim() !== ''){
         newState.posts = [...state.posts]
-        console.log(newState)
         newState.posts.push(
          {author : 'User', text:state.postInput}
         )
@@ -38,6 +41,15 @@ export let homeReduser = (state = initialState, action) => {
     }
     case LOAD_PROFILE : {
       return {...state, ...action.userData}
+    }
+    case GET_STATUS : {
+      return {...state,
+         status: action.status}
+    }
+    case UPDATE_STATUS : {
+      return {
+        ...state
+      }
     }
   }  
     
@@ -63,3 +75,14 @@ export let loadProfileActionCreator = (userData) => {
       type : LOAD_PROFILE, userData
   }
 };
+export let getStatusActionCreator = (status) => {
+  return {
+    type: GET_STATUS, status
+  }
+}
+
+export let updateStatusActionCreator = (status) => {
+  return {
+    type: UPDATE_STATUS, status
+  }
+}

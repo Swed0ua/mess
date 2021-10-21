@@ -1,7 +1,4 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { userAuth } from "./auth_reduser";
-import store from "./redux-store";
 
 
 let instance = axios.create({
@@ -12,15 +9,31 @@ let instance = axios.create({
 })
 
 
-export const AuthProfileAPI = {
+export const AuthAPI = {
     authMe(){
-        return instance.get(`auth/me`).then(response => {
-            let {id, login, email} = response.data.data;
-            store.dispatch(userAuth(id, login, email));
-        })
+        return instance.get(`auth/me`)
     },
+    login(login, password, rememberMe ){
+        return instance.post(`auth/login`, {email: login, password, rememberMe})
+    },
+    logout(){
+        return instance.delete(`auth/login`)
+    },
+    captcha(){
+        return instance.get(`security/get-captcha-url`)
+    }
+}
+
+export const ProfileAPI = {
     getProfile(userId){
         return instance.get(`profile/${userId}`)
+    },
+    getStatus(userId){
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(text){
+        alert(text)
+        return instance.put(`profile/status/`, {status: text})
     }
 }
 

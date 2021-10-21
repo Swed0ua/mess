@@ -1,5 +1,6 @@
-import { AuthProfileAPI, UserAPI } from "./api";
-import { loadProfileActionCreator } from "./home_reduser";
+import { AuthAPI, ProfileAPI, UserAPI } from "./api";
+import { getCaptchaURL, userAuth } from "./auth_reduser";
+import { getStatusActionCreator, loadProfileActionCreator } from "./home_reduser";
 import { followingActionCreator, loadUsersActionCreator, unfollowingChangeActionCreator } from "./searching_reduser";
 
 export const getUsersThunk = (page) => {
@@ -33,8 +34,7 @@ export const unfollowingThunk = (userId) => {
 
 export const getAuthProfileThunk = (profileID) => {
     return dispatch => {
-        if (!profileID) profileID = 22; 
-        AuthProfileAPI.getProfile(profileID).then((response)=> {
+        ProfileAPI.getProfile(profileID).then((response)=> {
             dispatch(loadProfileActionCreator(response.data))
         }).catch(e => {
             console.error(e)
@@ -42,7 +42,48 @@ export const getAuthProfileThunk = (profileID) => {
     }
 }
 
+export const getStatusThunk = (userId) => {
+    return dispatch => {
+        ProfileAPI.getStatus(userId).then(response => {
+            dispatch(getStatusActionCreator(response.data))
+        }).catch( e => console.error(e))
+    }
+}
+
+export const updateStatusThunk = (text) => {
+    return dispatch => {
+        ProfileAPI.updateStatus(text).then(response => {
+            dispatch(getStatusActionCreator(text))
+        }).catch(e => console.error(e))
+    }
+}
+
 export const authMeThunk = () => {
-    return dispatch => { AuthProfileAPI.authMe()}
+    return dispatch => { 
+        AuthAPI.authMe().then(response => {
+            let {id, login, email} = response.data.data;
+            dispatch(userAuth(id, login, email));
+        })
+    }
+}
+
+export const loginThunk = (login, password, rememberMe = false) => dispatch => {
+    AuthAPI.login(login, password, rememberMe).then(response => response.data).then(data=>{ console.log(data)
+       if (data.resultCode === 0){dispatch(authMeThunk())}
+       if (data.resultCode === 10){dispatch(getCaptchaThunk())}
+    });
+}
+
+export const logoutThunk = () => dispatch => {
+    AuthAPI.logout().then(response=>{ console.log(response)
+       dispatch(authMeThunk());
+    });
+}
+
+export const getCaptchaThunk = () => dispatch => {
+    AuthAPI.captcha().then(response=>{ console.log(response)
+        dispatch(getCaptchaURL(response.data.url))
+    })
+        .catch(e=>console.error(e));
 }
 

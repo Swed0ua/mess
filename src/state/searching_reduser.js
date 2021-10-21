@@ -15,7 +15,6 @@ let initialState = {
 let searchingReduser = (state = initialState, action) => {
   let newState = {...state};
   newState.users = [...state.users]
-  console.log(action)
   switch (action.type) {
     case FOLLOWING:
       newState.users.map(e => {

@@ -4,12 +4,12 @@ import './header.css';
 import Menu from './Menu/Menu';
 
 function Header (props) {
-    console.log(props)
     return (
         <header>
         <div className="logo">MESSENGER</div>
         <Menu/>
-        {props.authMe.id ?
+        <button onClick={props.onLogout}>logout</button>
+        {props.authMe.isAuth ?
          <div className="user">
             <div className="user_name">{props.authMe.login}</div>
             <div className="user_photo"></div>

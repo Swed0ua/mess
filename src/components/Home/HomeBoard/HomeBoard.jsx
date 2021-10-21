@@ -1,4 +1,5 @@
 import React from 'react';
+import StatusArea from './StatusArea/StatusArea';
 
 function HomeBoard (props) {
 
@@ -11,6 +12,13 @@ function HomeBoard (props) {
             </div>
             <div className="home-board_footer">
                 <h1 className="home-board_user-name user-name H1">{props.profile.fullName}</h1>
+                <StatusArea 
+                            statusInput={props.state.statusInput}
+                            text={props.state.statusText}
+                            onActiveStatusInput={props.onActiveStatusInput}
+                            onUpdateStatus={props.onUpdateStatus}
+                            onChangeInputStatus={props.onChangeInputStatus}
+                            />
             </div>
             <div className="ava_back">
                 <div className="home-board_checkButton"></div>

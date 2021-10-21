@@ -1,9 +1,12 @@
-const USER_AUTH = 'USER_AUTH'
+const USER_AUTH = 'USER_AUTH',
+CAPTCHA_URL = 'CAPTCHA_URL'
 
 let initialState = {
   id: null,
   login: null,
-  mail: null
+  email: null,
+  isAuth: false,
+  captcha: null
 }
 
 let authReduser = (state = initialState, action) => {
@@ -13,7 +16,14 @@ let authReduser = (state = initialState, action) => {
         ...state,
         id: action.id,
         login: action.login,
-        email: action.email
+        email: action.email,
+        isAuth: action.bool
+      }
+    }
+    case CAPTCHA_URL: {
+      return {
+        ...state,
+        captcha: action.url
       }
     }
   }
@@ -23,7 +33,15 @@ let authReduser = (state = initialState, action) => {
 
 export default authReduser;
 export let userAuth = (id, login, email) => {
+  let bool = false
+  if (id) bool = true
   return {
-    type: USER_AUTH, id, login, email
+    type: USER_AUTH, id, login, email, bool
+  }
+}
+
+export let getCaptchaURL = (url) => {
+  return{
+    type: CAPTCHA_URL, url
   }
 }

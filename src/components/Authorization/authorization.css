@@ -1,0 +1,15 @@
+.authorization{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login__input {
+    margin: 10px 0;
+}
+
+.form-login__button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}

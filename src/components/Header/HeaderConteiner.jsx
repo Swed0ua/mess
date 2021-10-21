@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authMeThunk } from '../../state/thunk';
+import { authMeThunk, logoutThunk } from '../../state/thunk';
 import Header from './Header';
 import './header.css';
 
@@ -9,10 +9,13 @@ class HeaderConteiner extends React.Component  {
         super(props)
     }
     componentDidMount(){
-       this.props.auth()
+        this.props.auth();
+    }
+    onLogout=()=>{
+        this.props.logout();
     }
     render(){
-        return <Header {...this.props}/>
+        return <Header {...this.props} onLogout={this.onLogout}/>
     }
 }
 
@@ -23,7 +26,8 @@ let mapStoreToProps = (state) => {
     }
 };
 let mapDispatchToProps = {
-    auth: authMeThunk
+    auth: authMeThunk,
+    logout: logoutThunk
 }
 
 export default connect(mapStoreToProps, mapDispatchToProps)(HeaderConteiner);
