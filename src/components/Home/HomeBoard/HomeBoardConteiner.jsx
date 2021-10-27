@@ -18,31 +18,35 @@ class HomeBoardConteiner extends React.Component {
         statusText: ''
     }
 
-    component = `
-    <HomeBoard {...this.props} 
-            onActiveStatusInput = {this.onActiveStatusInput}
-            state = {this.state}
-            onUpdateStatus = {this.onUpdateStatus}
-            onChangeInputStatus = {this.onChangeInputStatus}
-            />
-    `
+    component = () => {
+        return <HomeBoard {...this.props} 
+        onActiveStatusInput = {this.onActiveStatusInput}
+        state = {this.state}
+        onUpdateStatus = {this.onUpdateStatus}
+        onChangeInputStatus = {this.onChangeInputStatus}
+        />
+    }
 
     componentDidMount(){
-        let profileID = this.props.match.params.userId;
-        if (!profileID) profileID = this.props.authId || (this.component = `<Redirect/>`); 
-        this.props.getAuthProfile(profileID);
-        this.props.getStatus(profileID)
+        this.checkUser()
         this.setState({
             statusText : this.props.profile.status || 'no status'
         })
-        console.log(this.props.profile.status)
     }
 
     componentDidUpdate(prerProps, prevState){
+        this.checkUser()
         if (prerProps.profile.status !== this.props.profile.status)
         {this.setState({
             statusText : this.props.profile.status || 'no status'
         })}
+    }
+
+    checkUser=()=>{
+        let profileID = this.props.match.params.userId;
+        if (!profileID) profileID = this.props.authId || (this.component =() => <Redirect to="/auth/login"/>); 
+        this.props.getAuthProfile(profileID);
+        this.props.getStatus(profileID)
     }
 
     onActiveStatusInput = () =>{
@@ -67,7 +71,7 @@ class HomeBoardConteiner extends React.Component {
     }
 
     render(){
-        return(this.component)
+        return(this.component())
     }
 }
 
