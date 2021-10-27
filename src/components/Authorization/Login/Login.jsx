@@ -28,6 +28,7 @@ class Login extends React.Component {
                 </div>
                 {this.props.auth.captcha && <div><img src={this.props.auth.captcha} alt="captcha"/>  </div>}
                 <button className="form-login__button button" >LOGIN</button>
+                <div className='form-login__error'>{this.props.error}</div>
             </form>
         </div>)
     }

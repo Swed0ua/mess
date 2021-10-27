@@ -9,7 +9,7 @@ class HeaderConteiner extends React.Component  {
         super(props)
     }
     componentDidMount(){
-        this.props.auth();
+
     }
     onLogout=()=>{
         this.props.logout();

@@ -1,12 +1,14 @@
 const USER_AUTH = 'USER_AUTH',
-CAPTCHA_URL = 'CAPTCHA_URL'
+CAPTCHA_URL = 'CAPTCHA_URL',
+INITIALIZATION = 'INITIALIZATION'
 
 let initialState = {
   id: null,
   login: null,
   email: null,
   isAuth: false,
-  captcha: null
+  captcha: null,
+  initialization: false
 }
 
 let authReduser = (state = initialState, action) => {
@@ -26,6 +28,13 @@ let authReduser = (state = initialState, action) => {
         captcha: action.url
       }
     }
+
+    case INITIALIZATION: {
+      return {
+        ...state,
+        initialization: true
+      }
+    }
   }
   return state;
 }
@@ -43,5 +52,11 @@ export let userAuth = (id, login, email) => {
 export let getCaptchaURL = (url) => {
   return{
     type: CAPTCHA_URL, url
+  }
+}
+
+export let finishInitialization = () => {
+  return{
+    type: INITIALIZATION
   }
 }

@@ -1,5 +1,6 @@
+import { stopSubmit } from "redux-form";
 import { AuthAPI, ProfileAPI, UserAPI } from "./api";
-import { getCaptchaURL, userAuth } from "./auth_reduser";
+import { finishInitialization, getCaptchaURL, userAuth } from "./auth_reduser";
 import { getStatusActionCreator, loadProfileActionCreator } from "./home_reduser";
 import { followingActionCreator, loadUsersActionCreator, unfollowingChangeActionCreator } from "./searching_reduser";
 
@@ -58,18 +59,17 @@ export const updateStatusThunk = (text) => {
     }
 }
 
-export const authMeThunk = () => {
-    return dispatch => { 
-        AuthAPI.authMe().then(response => {
+export const authMeThunk = () => (dispatch) => { 
+        return AuthAPI.authMe().then(response => {
             let {id, login, email} = response.data.data;
             dispatch(userAuth(id, login, email));
         })
     }
-}
 
 export const loginThunk = (login, password, rememberMe = false) => dispatch => {
     AuthAPI.login(login, password, rememberMe).then(response => response.data).then(data=>{ console.log(data)
        if (data.resultCode === 0){dispatch(authMeThunk())}
+       else { dispatch(stopSubmit('login', {_error: data.messages[0]})) }
        if (data.resultCode === 10){dispatch(getCaptchaThunk())}
     });
 }
@@ -86,4 +86,12 @@ export const getCaptchaThunk = () => dispatch => {
     })
         .catch(e=>console.error(e));
 }
+
+export let initializationApp = () => dispatch => {
+    let auth = dispatch(authMeThunk())
+    Promise.all([auth]).then(()=>{
+        dispatch(finishInitialization())  
+    })
+  }
+  
 

@@ -4,6 +4,8 @@
     align-items: center;
 }
 
+/** LOGIN  **/
+
 .form-login__input {
     margin: 10px 0;
 }
@@ -12,4 +14,9 @@
     width: 100%;
     padding: 10px;
     cursor: pointer;
+}
+
+.form-login__error {
+    background-color: red;
+    color: white;
 }

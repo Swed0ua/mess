@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import HomeBoard from './HomeBoard';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { getAuthProfileThunk, getStatusThunk, updateStatusThunk } from '../../../state/thunk';
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
+import { getAuthId } from '../../../state/selects';
 
 class HomeBoardConteiner extends React.Component {
 
@@ -17,9 +18,18 @@ class HomeBoardConteiner extends React.Component {
         statusText: ''
     }
 
+    component = `
+    <HomeBoard {...this.props} 
+            onActiveStatusInput = {this.onActiveStatusInput}
+            state = {this.state}
+            onUpdateStatus = {this.onUpdateStatus}
+            onChangeInputStatus = {this.onChangeInputStatus}
+            />
+    `
+
     componentDidMount(){
         let profileID = this.props.match.params.userId;
-        if (!profileID) profileID = '20018'; 
+        if (!profileID) profileID = this.props.authId || (this.component = `<Redirect/>`); 
         this.props.getAuthProfile(profileID);
         this.props.getStatus(profileID)
         this.setState({
@@ -57,19 +67,15 @@ class HomeBoardConteiner extends React.Component {
     }
 
     render(){
-        return(<HomeBoard {...this.props} 
-            onActiveStatusInput = {this.onActiveStatusInput}
-            state = {this.state}
-            onUpdateStatus = {this.onUpdateStatus}
-            onChangeInputStatus = {this.onChangeInputStatus}
-            />)
+        return(this.component)
     }
 }
 
 let mapStoreToProps = (state) => {
     return{
         profile: state.home_reduser,
-        auth: state.auth_reduser
+        auth: state.auth_reduser,
+        authId: getAuthId(state)
     }
 };
 let mapDispatchToProps = {
@@ -80,6 +86,5 @@ let mapDispatchToProps = {
 
 export default compose(
     withRouter,
-    connect(mapStoreToProps, mapDispatchToProps),
-    WithAuthRedirect
+    connect(mapStoreToProps, mapDispatchToProps)
 )(HomeBoardConteiner);
