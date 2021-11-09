@@ -35,18 +35,22 @@ class HomeBoardConteiner extends React.Component {
     }
 
     componentDidUpdate(prerProps, prevState){
-        this.checkUser()
+        // !this.props.authId && this.redirectToLogin(); 
         if (prerProps.profile.status !== this.props.profile.status)
         {this.setState({
             statusText : this.props.profile.status || 'no status'
         })}
     }
 
-    checkUser=()=>{
+    checkUser = () =>{
         let profileID = this.props.match.params.userId;
-        if (!profileID) profileID = this.props.authId || (this.component =() => <Redirect to="/auth/login"/>); 
-        this.props.getAuthProfile(profileID);
-        this.props.getStatus(profileID)
+            if (!profileID) profileID = this.props.authId || (this.redirectToLogin()); 
+            this.props.getAuthProfile(profileID);
+            this.props.getStatus(profileID)
+    }
+
+    redirectToLogin=()=>{
+        this.component =() => <Redirect to="/auth/login"/>
     }
 
     onActiveStatusInput = () =>{
@@ -85,7 +89,7 @@ let mapStoreToProps = (state) => {
 let mapDispatchToProps = {
     getAuthProfile: getAuthProfileThunk,
     getStatus: getStatusThunk,
-    updateStatus: updateStatusThunk
+    updateStatus: updateStatusThunk  
 }
 
 export default compose(

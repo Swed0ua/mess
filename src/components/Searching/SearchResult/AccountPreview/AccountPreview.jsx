@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import noPhoto from '../../../../img/ico/icoForMes__defPhoto.png'
 
 function AccountPreview (props) {
     let smallPhoto = (photo) => {if (photo!=null){
         return photo
         } else {
-        return 'https://images.pexels.com/photos/2173872/pexels-photo-2173872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'    
+        return noPhoto    
         }
     }
 

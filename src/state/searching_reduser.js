@@ -7,8 +7,8 @@ PRELOAD = 'PRELOAD'
 let initialState = {
   users: [],
   pageSize: 5,
-  page: 1,
-  pages: 20,
+  page: 10,
+  pages: 100,
   loading: false
 }
 
@@ -30,7 +30,7 @@ let searchingReduser = (state = initialState, action) => {
 
     case LOADUSERS:
       newState.users = action.users;
-      /* newState.pages = action.totalCount; */
+      newState.pages = action.totalCount;
       newState.loading = false
       break;
     
@@ -57,9 +57,9 @@ export let unfollowingChangeActionCreator = (userId) => {
   }
 }
 
-export let loadUsersActionCreator = (users) => {
+export let loadUsersActionCreator = (users, totalCount) => {
   return {
-      type: LOADUSERS, users
+      type: LOADUSERS, users, totalCount
   }
 }
 

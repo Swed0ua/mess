@@ -2,9 +2,11 @@ import React from 'react';
 import DialogWrapper from './DialogWrapper';
 import {addMessageActionCreator, inputMessageChangeActionCreator} from './../../../../state/dialogs_reduser';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { WithAuthRedirect } from '../../../../hoc/WithAuthRedirect';
+import { getAuth } from '../../../../state/selects';
 
 let mapStoreToProps = (state) => {
-    console.log(state)
     return{
         dialogsPage: state.dialogs_reduser
     }
@@ -16,9 +18,13 @@ mapDispatchToProps =(dispatch)=> {
         },
         inputMessageChange: (text)=>{
             dispatch(inputMessageChangeActionCreator(text));
-        }
+        },
+        isAuth: getAuth
     }
 }
 
-export let DialogWrapperConteiner = connect(mapStoreToProps, mapDispatchToProps)(DialogWrapper);
+export let DialogWrapperConteiner = compose(
+    connect(mapStoreToProps, mapDispatchToProps)
+    )
+    (DialogWrapper);
 export default DialogWrapperConteiner;

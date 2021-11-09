@@ -1,0 +1,96 @@
+
+.paginator__wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    -ms-border-radius: 90px;
+    -o-border-radius: 90px;
+    background: -webkit-linear-gradient(45deg, rgb(52, 229, 22), rgb(92, 182, 84));
+    background: -moz-linear-gradient(45deg, rgb(52, 229, 22), rgb(92, 182, 84));
+    background: linear-gradient(45deg, rgb(52, 229, 22), rgb(92, 182, 84));
+}
+
+.paginator{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginator__item {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 90%;
+    -webkit-border-radius: 90%;
+    -moz-border-radius: 90%;
+    -ms-border-radius: 90%;
+    -o-border-radius: 90%;
+}
+
+.paginator__item:hover{
+    background: -webkit-linear-gradient(45deg, rgb(212, 212, 234), rgb(116, 196, 249));
+background: -moz-linear-gradient(45deg, rgb(212, 212, 234), rgb(116, 196, 249));
+background: linear-gradient(45deg, rgb(212, 212, 234), rgb(116, 196, 249));
+}
+
+.paginator__item._active{
+    background: -webkit-linear-gradient(45deg, rgb(228, 244, 226), rgb(200, 222, 236));
+    background: -moz-linear-gradient(45deg, rgb(228, 244, 226), rgb(200, 222, 236));
+    background: linear-gradient(45deg, rgb(228, 244, 226), rgb(200, 222, 236));
+}
+
+.paginator__arrow{
+    cursor: pointer;
+    padding: 10px;
+    background-color: red;
+    border-radius: 90%;
+    -webkit-border-radius: 90%;
+    -moz-border-radius: 90%;
+    -ms-border-radius: 90%;
+    -o-border-radius: 90%;
+    width: 2em;
+    height: 2em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginator__arrow-left{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+
+.paginator__arrow-right{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+}
+
+.paginator__arrow>img {
+    height: 40%;
+    transform: translate(0, 15%);
+    -webkit-transform: translate(0, 15%);
+    -moz-transform: translate(0, 15%);
+    -ms-transform: translate(0, 15%);
+    -o-transform: translate(0, 15%);
+}

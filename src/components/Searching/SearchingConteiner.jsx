@@ -26,11 +26,11 @@ class SearchingConteiner extends React.Component {
         this.props.unfollowing(userId);
     }
 
-    onChangeSearchPage = (page) => {
+    /* onChangeSearchPage = (page) => {
         this.onPreload(true);
         this.props.changePage(page);
         this.usersShow(page)
-    }
+    } */
 
     onPreload = (load) => {
         this.props.changePreload(load)
@@ -46,7 +46,7 @@ class SearchingConteiner extends React.Component {
             onFollowing={this.onFollowing}
             onUnfollowing={this.onUnfollowing}
             onLoadUsers={this.onLoadUsers}
-            onChangeSearchPage={this.onChangeSearchPage}
+            //onChangeSearchPage={this.onChangeSearchPage}
             usersShow = {this.usersShow}
             onPreload={this.onPreload}
             />
@@ -58,8 +58,7 @@ class SearchingConteiner extends React.Component {
 
 let mapStoreToProps = (state) => {
     return{
-        searchingPage: state.searching_reduser,
-        auth: state.auth_reduser
+        searchingPage: state.searching_reduser
     }
 };
 let mapDispatchToProps = {
@@ -72,5 +71,4 @@ let mapDispatchToProps = {
 
 export default compose(
     connect(mapStoreToProps, mapDispatchToProps),
-    WithAuthRedirect
 )(SearchingConteiner)

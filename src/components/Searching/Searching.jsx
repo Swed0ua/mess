@@ -11,7 +11,6 @@ function Searching (props) {
                 onFollowing={props.onFollowing}
                 onLoadUsers={props.onLoadUsers} 
                 onUnfollowing={props.onUnfollowing} 
-                searching={props.searchingPage}
                 usersShow = {props.usersShow}
                 onPreload={props.onPreload}
                 />

@@ -8,8 +8,8 @@ export const getUsersThunk = (page) => {
     return (dispatch) => {
         UserAPI.getUsers(page).then((response) => {
             let users = response.data.items;
-            //let totalCount = response.data.totalCount;
-            dispatch(loadUsersActionCreator(users));
+            let totalCount = response.data.totalCount;
+            dispatch(loadUsersActionCreator(users, totalCount));
         }).catch((e) => {
             console.error(e)
         } )

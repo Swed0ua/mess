@@ -15,7 +15,7 @@
 
 /* Result page */
 .result__pages *{
-    font-size: 1.5em;
+    
     margin: 10px;
     cursor: pointer;
 }
