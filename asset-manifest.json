@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Swed0ua/mess/static/css/main.fce68279.chunk.css",
+    "main.js": "/Swed0ua/mess/static/js/main.0347ad4b.chunk.js",
+    "main.js.map": "/Swed0ua/mess/static/js/main.0347ad4b.chunk.js.map",
+    "runtime-main.js": "/Swed0ua/mess/static/js/runtime-main.632c6f65.js",
+    "runtime-main.js.map": "/Swed0ua/mess/static/js/runtime-main.632c6f65.js.map",
+    "static/js/2.478dceec.chunk.js": "/Swed0ua/mess/static/js/2.478dceec.chunk.js",
+    "static/js/2.478dceec.chunk.js.map": "/Swed0ua/mess/static/js/2.478dceec.chunk.js.map",
+    "static/js/3.073e0e82.chunk.js": "/Swed0ua/mess/static/js/3.073e0e82.chunk.js",
+    "static/js/3.073e0e82.chunk.js.map": "/Swed0ua/mess/static/js/3.073e0e82.chunk.js.map",
+    "index.html": "/Swed0ua/mess/index.html",
+    "static/css/main.fce68279.chunk.css.map": "/Swed0ua/mess/static/css/main.fce68279.chunk.css.map",
+    "static/js/2.478dceec.chunk.js.LICENSE.txt": "/Swed0ua/mess/static/js/2.478dceec.chunk.js.LICENSE.txt",
+    "static/media/preloader.132da723.gif": "/Swed0ua/mess/static/media/preloader.132da723.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.632c6f65.js",
+    "static/js/2.478dceec.chunk.js",
+    "static/css/main.fce68279.chunk.css",
+    "static/js/main.0347ad4b.chunk.js"
+  ]
+}
