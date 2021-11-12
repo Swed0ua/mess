@@ -4,8 +4,8 @@ import HomeBoard from './HomeBoard';
 import { Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { getAuthProfileThunk, getStatusThunk, updateStatusThunk } from '../../../state/thunk';
-import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
 import { getAuthId } from '../../../state/selects';
+import { WeatherAPI } from '../../../state/api';
 
 class HomeBoardConteiner extends React.Component {
 
@@ -35,7 +35,6 @@ class HomeBoardConteiner extends React.Component {
     }
 
     componentDidUpdate(prerProps, prevState){
-        // !this.props.authId && this.redirectToLogin(); 
         if (prerProps.profile.status !== this.props.profile.status)
         {this.setState({
             statusText : this.props.profile.status || 'no status'

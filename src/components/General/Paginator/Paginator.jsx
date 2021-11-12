@@ -7,7 +7,7 @@ function Paginator (props) {
     let [paginatorGuise, setPaginatorGuise] = useState([]);
 
     let currentPage = props.numberOfPages;
-    let maxItems = 7;
+    let maxItems = props.maxItems;
     let openPage = props.resultPage;
     
     const paginatorArrayInit = (int) => {
@@ -39,7 +39,7 @@ function Paginator (props) {
                     break
             
                 default:
-                    paginatorHtml.push(<PaginatorItem activePage={openPage} changePage={props.setResultPage} page={e} />);
+                    paginatorHtml.push(<PaginatorItem activePage={openPage} changePage={props.onChangeResultPage} page={e} />);
                     break;
             }
         })

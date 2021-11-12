@@ -2,7 +2,7 @@ import { stopSubmit } from "redux-form";
 import { AuthAPI, ProfileAPI, UserAPI } from "./api";
 import { finishInitialization, getCaptchaURL, userAuth } from "./auth_reduser";
 import { getStatusActionCreator, loadProfileActionCreator } from "./home_reduser";
-import { followingActionCreator, loadUsersActionCreator, unfollowingChangeActionCreator } from "./searching_reduser";
+import { changePageActionCreator, changePreloadActionCreator, followingActionCreator, loadUsersActionCreator, unfollowingChangeActionCreator } from "./searching_reduser";
 
 export const getUsersThunk = (page) => {
     return (dispatch) => {
@@ -23,6 +23,14 @@ export const followingThunk = (userId) => {
 
         } 
     })}
+}
+
+export const changeSearchPageThunk = (page) => (dispatch) =>{
+        let changePreloader = dispatch(changePreloadActionCreator(true))
+        let changePage = dispatch(changePageActionCreator(page))
+        let usersShow = dispatch(getUsersThunk(page))
+        Promise.all([changePreloader, changePage, usersShow]).then(()=>{ 
+    })
 }
 
 export const unfollowingThunk = (userId) => {

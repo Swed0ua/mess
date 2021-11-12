@@ -46,6 +46,10 @@ export const UserAPI = {
     unfollowed(id){
         return instance.delete(`follow/${id}`)
     }
+}
 
-
+export const WeatherAPI = {
+    getWeather(){
+        return axios('https://api.openweathermap.org/data/2.5/weather?q=lviv&appid=183b26c1e14b3facea2bc83da11c6f72')
+    }
 }

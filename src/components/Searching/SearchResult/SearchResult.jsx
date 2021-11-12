@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import AccountPreview from './AccountPreview/AccountPreview';
 import Preloader from '../../General/Preloader/Preloader';
 import Paginator from '../../General/Paginator/Paginator';
-import { connect } from 'react-redux';
-import { changePageActionCreator, changePreloadActionCreator } from '../../../state/searching_reduser';
-import { getUsersThunk } from '../../../state/thunk';
+import { connect, useDispatch } from 'react-redux';
+import { changeSearchPageThunk } from '../../../state/thunk';
 import { getSearchingReduser } from '../../../state/selects';
 
 function SearchResult (props) {
@@ -24,29 +23,36 @@ function SearchResult (props) {
     */
 
     let allPage = props.searching.pages;
+    let dispatch = useDispatch();
 
-    let [resultPage, setResultPage] = useState(1),
-        [numberOfPages, setNumberOfPages] = useState(1),
-        [pageSize, setPageSize] = useState(1),
-        [loading, setLoading] = useState(false),
-        [users, setUsers] = useState([])
+    let [resultPage, setResultPage] = useState(props.searching.page),
+        [numberOfPages, setNumberOfPages] = useState(allPage),
+        [maxItems, setMaxItems] = useState(7),
+        [pageSize, setPageSize] = useState(props.searching.pageSize),
+        [loading, setLoading] = useState(props.searching.loading),
+        [users, setUsers] = useState(props.searching.users)
 
 
         console.log(allPage, numberOfPages)
 
     useEffect(()=>{
-        setResultPage(props.searching.page)
-        setNumberOfPages(allPage)
-        setPageSize(props.searching.pageSize)
-        setLoading(props.searching.loading)
-        setUsers(props.searching.users)
+        
     }, [])
 
 
     useEffect(()=>{
-        setNumberOfPages(props.searching.pages)
         setResultPage(props.searching.page)
-    }, [allPage, resultPage])
+    }, [resultPage])
+
+    useEffect(()=>{
+        setNumberOfPages(props.searching.pages)
+    }, [numberOfPages, allPage])
+
+    const onChangeResultPage = (page) => {
+        setResultPage(page)
+        props.changePage(page)
+    }
+
 
     
 
@@ -56,7 +62,8 @@ function SearchResult (props) {
                 <Paginator 
                 resultPage={resultPage}
                 numberOfPages={numberOfPages}
-                setResultPage={setResultPage}
+                maxItems={maxItems}
+                onChangeResultPage={onChangeResultPage}
                 />
                 {props.searching.loading == true || props.searching.loading == undefined  ? <Preloader/> : null }
             </div>   
@@ -75,10 +82,8 @@ let mapStoreToProps = (state) => {
     }
 };
 let mapDispatchToProps = {
-        changePage: changePageActionCreator,
-        changePreload : changePreloadActionCreator,
-        getUsers: getUsersThunk
-}
+    changePage: changeSearchPageThunk    
+    }
 
 
 export default connect(mapStoreToProps, mapDispatchToProps)(SearchResult);
