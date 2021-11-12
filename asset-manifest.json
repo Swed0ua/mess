@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Swed0ua/mess/static/css/main.fce68279.chunk.css",
-    "main.js": "/Swed0ua/mess/static/js/main.2030a899.chunk.js",
-    "main.js.map": "/Swed0ua/mess/static/js/main.2030a899.chunk.js.map",
-    "runtime-main.js": "/Swed0ua/mess/static/js/runtime-main.632c6f65.js",
-    "runtime-main.js.map": "/Swed0ua/mess/static/js/runtime-main.632c6f65.js.map",
-    "static/js/2.ab9dbcac.chunk.js": "/Swed0ua/mess/static/js/2.ab9dbcac.chunk.js",
-    "static/js/2.ab9dbcac.chunk.js.map": "/Swed0ua/mess/static/js/2.ab9dbcac.chunk.js.map",
-    "static/js/3.073e0e82.chunk.js": "/Swed0ua/mess/static/js/3.073e0e82.chunk.js",
-    "static/js/3.073e0e82.chunk.js.map": "/Swed0ua/mess/static/js/3.073e0e82.chunk.js.map",
-    "index.html": "/Swed0ua/mess/index.html",
-    "static/css/main.fce68279.chunk.css.map": "/Swed0ua/mess/static/css/main.fce68279.chunk.css.map",
-    "static/js/2.ab9dbcac.chunk.js.LICENSE.txt": "/Swed0ua/mess/static/js/2.ab9dbcac.chunk.js.LICENSE.txt",
-    "static/media/preloader.132da723.gif": "/Swed0ua/mess/static/media/preloader.132da723.gif"
+    "main.css": "/mess/static/css/main.fce68279.chunk.css",
+    "main.js": "/mess/static/js/main.2030a899.chunk.js",
+    "main.js.map": "/mess/static/js/main.2030a899.chunk.js.map",
+    "runtime-main.js": "/mess/static/js/runtime-main.29b2ccb5.js",
+    "runtime-main.js.map": "/mess/static/js/runtime-main.29b2ccb5.js.map",
+    "static/js/2.ab9dbcac.chunk.js": "/mess/static/js/2.ab9dbcac.chunk.js",
+    "static/js/2.ab9dbcac.chunk.js.map": "/mess/static/js/2.ab9dbcac.chunk.js.map",
+    "static/js/3.073e0e82.chunk.js": "/mess/static/js/3.073e0e82.chunk.js",
+    "static/js/3.073e0e82.chunk.js.map": "/mess/static/js/3.073e0e82.chunk.js.map",
+    "index.html": "/mess/index.html",
+    "static/css/main.fce68279.chunk.css.map": "/mess/static/css/main.fce68279.chunk.css.map",
+    "static/js/2.ab9dbcac.chunk.js.LICENSE.txt": "/mess/static/js/2.ab9dbcac.chunk.js.LICENSE.txt",
+    "static/media/preloader.132da723.gif": "/mess/static/media/preloader.132da723.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.632c6f65.js",
+    "static/js/runtime-main.29b2ccb5.js",
     "static/js/2.ab9dbcac.chunk.js",
     "static/css/main.fce68279.chunk.css",
     "static/js/main.2030a899.chunk.js"
