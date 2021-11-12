@@ -1,6 +1,6 @@
 import 'react-router-dom';
 import './index.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 import React from 'react'
 import Home from './components/Home/Home';
 import SearchingConteiner from './components/Searching/SearchingConteiner'; 
@@ -22,7 +22,7 @@ class App extends React.Component {
     console.log(this.props.initialization, this.props.profile)
     return (
       this.props.initialization ?
-        <BrowserRouter>
+        <HashRouter>
           <div className="App">
             <HeaderConteiner/>
             <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
@@ -30,7 +30,7 @@ class App extends React.Component {
             <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
             <Route path="/auth" render={() => <Authorization/>} ></Route>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       :
       <div> wait pleas <Preloader /></div>
   );
