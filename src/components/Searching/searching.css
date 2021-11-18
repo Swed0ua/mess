@@ -23,3 +23,7 @@
 .result__pages > ._active {
     font-weight: 900;
 }
+
+.searching__preloader {
+    width: 100px;
+}

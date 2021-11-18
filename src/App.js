@@ -9,8 +9,8 @@ import Authorization from './components/Authorization/Authorization';
 import { connect } from 'react-redux';
 import {initializationApp } from './state/thunk';
 import { getAuth, getInitialization } from './state/selects';
-import Preloader from './components/General/Preloader/Preloader';
 import DialogsConteiner from './components/Dialogs/DialogsConteiner';
+import PreloadPage from './components/General/PreloadPage/PreloadPage';
 
 class App extends React.Component {
 
@@ -22,17 +22,21 @@ class App extends React.Component {
     console.log(this.props.initialization, this.props.profile)
     return (
       this.props.initialization ?
-        <HashRouter>
-          <div className="App">
-            <HeaderConteiner/>
-            <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-            <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-            <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
-            <Route path="/auth" render={() => <Authorization/>} ></Route>
-          </div>
-        </HashRouter>
+        <React.Suspense>
+          <HashRouter id={2}>
+            <div className="App">
+              <HeaderConteiner/>
+              <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+              <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+              <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
+              <Route path="/auth" render={() => <Authorization/>} ></Route>
+            </div>
+          </HashRouter>
+        </React.Suspense>
       :
-      <div> wait pleas <Preloader /></div>
+      <React.Suspense>
+        <PreloadPage id={1}/>
+      </React.Suspense>
   );
   }
 }

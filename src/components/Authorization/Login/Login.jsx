@@ -9,9 +9,9 @@ let minSimbol6 = minSimbol(6)
 class Login extends React.Component {
     render(){
 
-        console.log(this.props)
-        return(<div>
+        return(<div className="authorization__form">
             <form onSubmit={this.props.handleSubmit }>
+                <h1> Login </h1>       
                 <div className="form-login__input" >
                     <Field placeholder="login" name="login" type="text"
                      validate={[validSimpleInput, mailValid]}

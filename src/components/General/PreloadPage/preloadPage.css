@@ -1,0 +1,42 @@
+.preloadPage__wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.preloadPage__background {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.preloadPage__background > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.preloadPage__logoColour {
+    width: 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+.preloadPage__logoColour > img {
+    width: 100%;
+}
+
+.preloadPage__preloader {
+    width: 20%;
+}

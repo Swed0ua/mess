@@ -65,7 +65,7 @@ function SearchResult (props) {
                 maxItems={maxItems}
                 onChangeResultPage={onChangeResultPage}
                 />
-                {props.searching.loading == true || props.searching.loading == undefined  ? <Preloader/> : null }
+                {props.searching.loading == true || props.searching.loading == undefined  ? <div className="searching__preloader"><Preloader/></div> : null }
             </div>   
             {props.searching.users.map(e => {
                 return(<AccountPreview user={e} onUnfollowing={props.onUnfollowing} onFollowing={props.onFollowing}/>)
