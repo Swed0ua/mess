@@ -1,6 +1,7 @@
 const USER_AUTH = 'USER_AUTH',
 CAPTCHA_URL = 'CAPTCHA_URL',
-INITIALIZATION = 'INITIALIZATION'
+INITIALIZATION = 'INITIALIZATION',
+POPUPSTATUS= 'POPUPSTATUS'
 
 let initialState = {
   id: null,
@@ -8,7 +9,8 @@ let initialState = {
   email: null,
   isAuth: false,
   captcha: null,
-  initialization: false
+  initialization: false,
+  popUp: false
 }
 
 let authReduser = (state = initialState, action) => {
@@ -35,6 +37,14 @@ let authReduser = (state = initialState, action) => {
         initialization: true
       }
     }
+
+    case POPUPSTATUS: {
+      return{
+        ...state,
+        popUp: action.popUp
+      }
+    }
+
   }
   return state;
 }
@@ -58,5 +68,11 @@ export let getCaptchaURL = (url) => {
 export let finishInitialization = () => {
   return{
     type: INITIALIZATION
+  }
+}
+
+export let changePopUpStatus = (act) => {
+  return{
+    type: POPUPSTATUS, popUp: act
   }
 }

@@ -11,6 +11,7 @@ import {initializationApp } from './state/thunk';
 import { getAuth, getInitialization } from './state/selects';
 import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import PreloadPage from './components/General/PreloadPage/PreloadPage';
+import PopUp from './components/PopUp/PopUp';
 
 class App extends React.Component {
 
@@ -26,10 +27,13 @@ class App extends React.Component {
           <HashRouter id={2}>
             <div className="App">
               <HeaderConteiner/>
-              <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-              <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-              <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
-              <Route path="/auth" render={() => <Authorization/>} ></Route>
+                <div className="app__content">
+                  <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+                  <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+                  <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
+                  <Route path="/auth" render={() => <Authorization/>} ></Route>
+                </div>
+                <PopUp/>
             </div>
           </HashRouter>
         </React.Suspense>

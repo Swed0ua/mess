@@ -23,6 +23,7 @@ function HomeBoard (props) {
             <div className="ava_back">
                 <div className="home-board_checkButton"></div>
                 <div className="home-board_ava">
+                    <button className="home-board__button button__change-photo">+</button>
                     <img  className="ava_photo" src={userPhoto}></img>
                 </div>
             </div>

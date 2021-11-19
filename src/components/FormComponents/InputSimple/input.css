@@ -1,4 +1,32 @@
+.form__input{
+    padding: .5em 1.5em;
+    outline: none;
+    border: 3px solid transparent;
+    width: 100%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.form__input input{
+    box-sizing: content-box;
+}
+
+.form__input:focus {
+    border-bottom-color:rgb(23, 247, 124);
+}
+
+.form__error {
+    font-size: 0.7em;
+    margin: 3px;
+    width: 100%;
+    height: 1em;
+    padding: 0 15px;
+    color: rgb(253, 129, 129);
+}
+
 ._error {
-    border: 1px simple red;
-    background-color: yellow;
+    border-color: rgb(253, 129, 129);
 }

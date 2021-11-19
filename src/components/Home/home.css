@@ -94,6 +94,32 @@
     z-index: 5;
 }
 
+.button__change-photo {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+    font-size: 3em;
+    background-color: rgba(0, 0, 0, 0.665);
+    transition: all ease .5s;
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+    -ms-transition: all ease .5s;
+    -o-transition: all ease .5s;
+}
+
+.home-board_ava:hover
+.button__change-photo{
+    top: 0;
+}
+
 /* Info Block */
 
 .home_infoBlocks {

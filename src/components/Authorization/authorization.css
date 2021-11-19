@@ -38,15 +38,22 @@
     width: 20%;
 }
 
+.form__title {
+    text-align: center;
+    margin: 0.5em 0;
+}
+
 /** LOGIN  **/
 
 .authorization__form {
     position: absolute;
     z-index: 20;
+    width: 80%;
+    max-width: 300px;
 }
 
 .form-login__input {
-    margin: 10px 0;
+    padding: 5px 0;
 }
 
 .form-login__button {

@@ -16,6 +16,12 @@ header {
   
   .logo {
     font-size: 3em;
+    height: 100%;
+    position: relative;
+  }
+
+  .logo>img {
+    height: 100%;
   }
 
   /* Menu */

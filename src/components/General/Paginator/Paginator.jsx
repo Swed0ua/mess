@@ -5,10 +5,18 @@ import PaginatorItem from './PaginatorItem/PaginatorItem';
 
 function Paginator (props) {
     let [paginatorGuise, setPaginatorGuise] = useState([]);
-
     let currentPage = props.numberOfPages;
     let maxItems = props.maxItems;
     let openPage = props.resultPage;
+
+    
+    let onArrow = (i) => {
+        let res = openPage + i;
+
+        if (res != 0 && res <= currentPage){
+            props.onChangeResultPage(openPage + i)
+        }
+    }
     
     const paginatorArrayInit = (int) => {
         let halfMaxItems = Math.ceil(maxItems/2)
@@ -61,13 +69,13 @@ function Paginator (props) {
     return (
         <div className="paginator__container">
             <div className="paginator__wrapper">
-                <div className="paginator__arrow paginator__arrow-left"><img src={arrow} alt="arrow-left"></img></div>
+                <div onClick={()=>onArrow(-1)} className="paginator__arrow paginator__arrow-left"><img src={arrow} alt="arrow-left"></img></div>
                 <ul className = "paginator" id = "paginator">
                     {
                          paginatorCreateHtml()
                     }
                 </ul>
-                <div className="paginator__arrow paginator__arrow-right"><img src={arrow} alt="arrow-right"></img></div>
+                <div onClick={()=>onArrow(1)} className="paginator__arrow paginator__arrow-right"><img src={arrow} alt="arrow-right"></img></div>
             </div>
         </div>
     )

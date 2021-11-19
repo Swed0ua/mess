@@ -1,12 +1,13 @@
 import React from 'react';
 import { authMe } from '../../state/api';
 import './header.css';
+import logo from '../../img/ico/logo.png'
 import Menu from './Menu/Menu';
 
 function Header (props) {
     return (
         <header>
-        <div className="logo">MESSENGER</div>
+        <div className="logo"><img src={logo} alt="logo"/></div>
         <Menu/>
         <button onClick={props.onLogout}>logout</button>
         {props.authMe.isAuth ?

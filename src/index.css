@@ -13,9 +13,16 @@ A {
   color: inherit;
 }
 
-.H1 {
-  font-size: 2em;
+H1 {
+  font-size: 3em;
   font-weight: 900;
+}
+
+BUTTON {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .BlockTemplate {
@@ -38,6 +45,10 @@ A {
 
 .App > * {
   padding: 20px;
+}
+
+.app__content {
+  position: relative;
 }
 
 .app__noWrapContent {

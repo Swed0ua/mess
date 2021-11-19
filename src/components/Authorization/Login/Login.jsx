@@ -11,7 +11,7 @@ class Login extends React.Component {
 
         return(<div className="authorization__form">
             <form onSubmit={this.props.handleSubmit }>
-                <h1> Login </h1>       
+                <h1 className="form__title" > Login </h1>       
                 <div className="form-login__input" >
                     <Field placeholder="login" name="login" type="text"
                      validate={[validSimpleInput, mailValid]}

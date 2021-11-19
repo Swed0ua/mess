@@ -29,3 +29,10 @@ export let getSearchingReduser = createSelector(
     }
 )
 
+export let getPopUpStatus = createSelector(
+    getState,
+    (state)=>{
+        return state.auth_reduser.popUp
+    }
+)
+
