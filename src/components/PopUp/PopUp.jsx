@@ -20,7 +20,9 @@ const PopUp = (props) => {
     return(
         <div className={popUpClass}>
             <div className='pop-up'>
-                asd
+                <h1>Change main photo</h1>
+                <input type="file"/>
+                <button>Change</button>
                 <button onClick={()=> dispatch(onChangePopUpStatus(false))} className='pop-up__close'>x</button>
             </div>
         </div>

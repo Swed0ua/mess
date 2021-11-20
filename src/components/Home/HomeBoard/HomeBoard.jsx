@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { onChangePopUpStatus } from '../../../state/thunk';
 import StatusArea from './StatusArea/StatusArea';
 
 function HomeBoard (props) {
-
+    let dispatch = useDispatch()
     let userPhoto = props.profile.photos.large;
 
     return (
@@ -23,7 +25,7 @@ function HomeBoard (props) {
             <div className="ava_back">
                 <div className="home-board_checkButton"></div>
                 <div className="home-board_ava">
-                    <button className="home-board__button button__change-photo">+</button>
+                    <button onClick={()=> dispatch(onChangePopUpStatus(true))} className="home-board__button button__change-photo">+</button>
                     <img  className="ava_photo" src={userPhoto}></img>
                 </div>
             </div>

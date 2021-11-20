@@ -27,12 +27,10 @@ class App extends React.Component {
           <HashRouter id={2}>
             <div className="App">
               <HeaderConteiner/>
-                <div className="app__content">
-                  <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-                  <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
-                  <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
-                  <Route path="/auth" render={() => <Authorization/>} ></Route>
-                </div>
+                <Route path="/home/:userId?" render={() => <Home dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+                <Route path="/dialogs" render={() => <DialogsConteiner dispatch={this.props.dispatch} appState={this.props.appState} />} ></Route>
+                <Route path="/searching" render={() => <SearchingConteiner/>} ></Route>
+                <Route path="/auth" render={() => <Authorization/>} ></Route>
                 <PopUp/>
             </div>
           </HashRouter>
