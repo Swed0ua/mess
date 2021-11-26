@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import { initializeApp } from "firebase/app";
 
 let instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -8,6 +9,18 @@ let instance = axios.create({
     'API-KEY': '5cb185a7-43d0-4f36-851f-818ca9604ad7'}
 })
 
+const firebaseConfig = {
+    apiKey: "AIzaSyA6rQe4BqMsC5f6GCWAWd3uh4AMf5X1h3Q",
+    authDomain: "social-network-f67f1.firebaseapp.com",
+    projectId: "social-network-f67f1",
+    storageBucket: "social-network-f67f1.appspot.com",
+    messagingSenderId: "1078313813971",
+    appId: "1:1078313813971:web:8fa60ec6701f4d78e3d126",
+    measurementId: "G-36RXJBWY7X"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  
 
 export const AuthAPI = {
     authMe(){
@@ -21,6 +34,9 @@ export const AuthAPI = {
     },
     captcha(){
         return instance.get(`security/get-captcha-url`)
+    },
+    registration(login, password){
+        return createUserWithEmailAndPassword(getAuth(), login, password)          
     }
 }
 

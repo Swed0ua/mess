@@ -82,6 +82,10 @@ export const loginThunk = (login, password, rememberMe = false) => dispatch => {
     });
 }
 
+export const registrationThunk = (login, password) => dispatch => {
+    AuthAPI.registration(login, password).then(data=>{ console.log(data)}).catch(err => console.log(err));
+}
+
 export const logoutThunk = () => dispatch => {
     AuthAPI.logout().then(response=>{ console.log(response)
        dispatch(authMeThunk());

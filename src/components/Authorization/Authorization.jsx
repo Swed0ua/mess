@@ -5,8 +5,9 @@ import './authorization.css';
 import background from '../../img/background/FEST_logo_poster-wrapper.jpg'
 import logoColour from '../../img/ico/FEST_logo_det.png'
 import { connect } from 'react-redux';
-import { getCaptchaThunk, loginThunk } from '../../state/thunk';
+import { getCaptchaThunk, loginThunk, registrationThunk } from '../../state/thunk';
 import { getAuth, getCaptcha } from '../../state/selects';
+import Registration from './Registration/Registration';
 
 
 class Authorization extends React.Component {
@@ -14,7 +15,12 @@ class Authorization extends React.Component {
             
     }
     onSubmit = (formData) => {
+        console.log(formData)
         this.props.login(formData.login, formData.password, formData.checkbox)
+    }
+    onRegistration = (formData) => {
+        console.log(formData)
+        this.props.registration(formData.login, formData.password)
     }
     render(){
         if (this.props.isAuth){
@@ -29,6 +35,7 @@ class Authorization extends React.Component {
             </div>
 
             <Route path="/auth/login" render={() => <Login {...this.props} login={this.props.login} onSubmit={this.onSubmit} />} ></Route>
+            <Route path="/auth/registration" render={() => <Registration {...this.props} onSubmit={this.onRegistration} />} ></Route>
         </div>)
     }
 }
@@ -41,4 +48,4 @@ let mapStoreToProps = (state) => {
     }
 };
 
-export default connect(mapStoreToProps , {login: loginThunk,  moveCaptcha: getCaptchaThunk})(Authorization);
+export default connect(mapStoreToProps , {login: loginThunk, registration: registrationThunk ,  moveCaptcha: getCaptchaThunk})(Authorization);
