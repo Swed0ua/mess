@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 
 let instance = axios.create({
@@ -24,13 +24,20 @@ const firebaseConfig = {
 
 export const AuthAPI = {
     authMe(){
-        return instance.get(`auth/me`)
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+               onAuthStateChanged(getAuth(), (user) => {
+                   resolve(user);
+                   });
+           }, 3000);
+         });
     },
     login(login, password, rememberMe ){
-        return instance.post(`auth/login`, {email: login, password, rememberMe})
+        //return instance.post(`auth/login`, {email: login, password, rememberMe})
+        return signInWithEmailAndPassword(getAuth(), login, password)
     },
     logout(){
-        return instance.delete(`auth/login`)
+        return signOut(getAuth())
     },
     captcha(){
         return instance.get(`security/get-captcha-url`)

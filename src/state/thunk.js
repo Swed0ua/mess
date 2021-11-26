@@ -68,18 +68,18 @@ export const updateStatusThunk = (text) => {
 }
 
 export const authMeThunk = () => (dispatch) => { 
-        return AuthAPI.authMe().then(response => {
-            let {id, login, email} = response.data.data;
-            dispatch(userAuth(id, login, email));
+        return AuthAPI.authMe().then((response) => {
+            console.log(response)
+            response != null && dispatch(userAuth("25", 'USER', '0'));
         })
     }
 
 export const loginThunk = (login, password, rememberMe = false) => dispatch => {
-    AuthAPI.login(login, password, rememberMe).then(response => response.data).then(data=>{ console.log(data)
-       if (data.resultCode === 0){dispatch(authMeThunk())}
+    AuthAPI.login(login, password, rememberMe).then(data=>{ console.log(data)
+      /*  if (data.resultCode === 0){dispatch(authMeThunk())}
        else { dispatch(stopSubmit('login', {_error: data.messages[0]})) }
-       if (data.resultCode === 10){dispatch(getCaptchaThunk())}
-    });
+       if (data.resultCode === 10){dispatch(getCaptchaThunk())} */
+    }).catch(err=> console.log(err.code));
 }
 
 export const registrationThunk = (login, password) => dispatch => {
@@ -87,7 +87,7 @@ export const registrationThunk = (login, password) => dispatch => {
 }
 
 export const logoutThunk = () => dispatch => {
-    AuthAPI.logout().then(response=>{ console.log(response)
+    AuthAPI.logout().then(()=>{ 
        dispatch(authMeThunk());
     });
 }
