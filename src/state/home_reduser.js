@@ -8,12 +8,10 @@ let initialState = {
   status: '',
   userid: 0,
   fullName: 'User',
-  posts: [
-    {author : 'User', text:"Hello world!"},
-    {author : 'User', text:"How are your"},
-    {author : 'User', text:"Hello world!"},
-    {author : 'User', text:"Have a nice day, guys"}
-  ],
+  posts: {
+    post1: {author : 'User', text:"Hello world!"},
+    post2: {author : 'User', text:"Have a nice day!"}
+  },
   photos: {
     small: null,
     large: null
@@ -27,10 +25,9 @@ export let homeReduser = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:{
       if (state.postInput.trim() !== ''){
-        newState.posts = [...state.posts]
-        newState.posts.push(
-         {author : 'User', text:state.postInput}
-        )
+        newState.posts = {...state.posts,
+        [`post${Object.keys(state.posts).length+1}`]: {author : 'User', text:state.postInput}
+        }
       }
       newState.postInput = '';
       break

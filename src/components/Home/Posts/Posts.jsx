@@ -15,10 +15,17 @@ function Posts (props) {
         props.inputPostsChange(text);
     }
 
-    let postsMovePage = props.posts.map(el=>{
-        return (<Post author={el.author} text={el.text} />);
-    })
+    let a = new Array();
+    let posts = props.posts
 
+    function postsMovePage () {
+        for(let key in props.posts){
+            a.push(<Post author={posts[key].author} text={posts[key].text}/>);
+        }
+    }
+    postsMovePage();
+
+    
     return (
         <div className="home_posts">
             <div className="post_creator BlockTemplate">
@@ -26,7 +33,7 @@ function Posts (props) {
                 <textarea onChange={onInputPostsChange} value={props.postInput} ref={newPost}></textarea>
             </div>
             <div className="posts_wrapper">
-                {postsMovePage}
+                {a}
             </div>
         </div>
     )

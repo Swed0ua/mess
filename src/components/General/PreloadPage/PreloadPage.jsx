@@ -6,11 +6,6 @@ import Preloader from '../Preloader/Preloader';
 
 const PreloadPage = (props) => {
     const load = background;
-    console.log(load);
-
-    const col = (data) => {
-        console.log(data)
-    }
 
     return (
         <div className="preloadPage__wrapper">

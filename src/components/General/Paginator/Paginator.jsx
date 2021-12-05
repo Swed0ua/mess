@@ -37,7 +37,6 @@ function Paginator (props) {
     const paginatorCreateHtml = () => {
         let paginatorHtml = [];
         paginatorGuise.map(e=>{
-            console.log(paginatorGuise, e);
             switch (e) {
                 case 0:
                     paginatorHtml.push(<li class="paginator__plug">...</li>)

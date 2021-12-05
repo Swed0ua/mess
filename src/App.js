@@ -20,7 +20,6 @@ class App extends React.Component {
   }
 
   render(){
-    console.log(this.props.initialization, this.props.profile)
     return (
       this.props.initialization ?
         <React.Suspense>

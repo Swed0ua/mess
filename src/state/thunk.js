@@ -41,6 +41,32 @@ export const unfollowingThunk = (userId) => {
     })}
 }
 
+
+//////////////////////////////////
+// Templates for get profile data 
+
+/* export const getMeThunk = () => {
+    return dispatch => {
+        AuthAPI.authMe().then(responce => {
+            ProfileAPI.getProfileData(responce.uid).then(res => {
+                console.log(res);
+                dispatch(dispatch(loadProfileActionCreator({id: 2})))  
+            });
+        }).catch( e => {
+                console.log(e);
+        })
+    }
+} */
+/////////////////////////////////
+
+
+export const getPosts = (userId) => {
+    return dispatch => {
+        console.log('e')
+       return ProfileAPI.getProfilePosts(userId)
+    }
+}
+
 export const getAuthProfileThunk = (profileID) => {
     return dispatch => {
         ProfileAPI.getProfile(profileID).then((response)=> {
@@ -70,7 +96,11 @@ export const updateStatusThunk = (text) => {
 export const authMeThunk = () => (dispatch) => { 
         return AuthAPI.authMe().then((response) => {
             console.log(response)
-            response != null && dispatch(userAuth("25", 'USER', '0'));
+            if(response){ 
+                dispatch(userAuth("25", 'USER', '0'));
+            } else {
+                dispatch(userAuth(null, null, null))
+            }
         })
     }
 
@@ -79,6 +109,7 @@ export const loginThunk = (login, password, rememberMe = false) => dispatch => {
       /*  if (data.resultCode === 0){dispatch(authMeThunk())}
        else { dispatch(stopSubmit('login', {_error: data.messages[0]})) }
        if (data.resultCode === 10){dispatch(getCaptchaThunk())} */
+       dispatch(authMeThunk())
     }).catch(err=> console.log(err.code));
 }
 

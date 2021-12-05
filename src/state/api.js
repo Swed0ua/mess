@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, onValue, set, get, child } from "firebase/database";
 
 let instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -16,19 +17,20 @@ const firebaseConfig = {
     storageBucket: "social-network-f67f1.appspot.com",
     messagingSenderId: "1078313813971",
     appId: "1:1078313813971:web:8fa60ec6701f4d78e3d126",
-    measurementId: "G-36RXJBWY7X"
-  };
+    measurementId: "G-36RXJBWY7X",
+    databaseURL: "https://social-network-f67f1-default-rtdb.europe-west1.firebasedatabase.app/"
+};
 
   const app = initializeApp(firebaseConfig);
-  
+  const database = ref(getDatabase(app));
 
 export const AuthAPI = {
     authMe(){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-               onAuthStateChanged(getAuth(), (user) => {
-                   resolve(user);
-                   });
+                onAuthStateChanged(getAuth(), (user) => {
+                    resolve(user);
+                });
            }, 3000);
          });
     },
@@ -50,6 +52,15 @@ export const AuthAPI = {
 export const ProfileAPI = {
     getProfile(userId){
         return instance.get(`profile/${userId}`)
+    },
+    getProfilePosts(userId){
+        return get(child(database, `users/${userId}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+              return snapshot.val()
+            } else {
+              console.log("No data available");
+            }
+          })
     },
     getStatus(userId){
         return instance.get(`profile/status/${userId}`)
